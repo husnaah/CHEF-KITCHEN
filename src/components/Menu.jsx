@@ -59,17 +59,19 @@ export default function Menu() {
   ];
 
   const addToCart = (dish) => {
-    const size = selectedSize[dish.id] || "M";
-      setCart((prev) => {
-    const found = prev.find((i) => i.id === dish.id && i.size === size);
-      if (found) {
-      return prev.map((i) =>
-        i.id === dish.id && i.size === size ? { ...i, qty: i.qty + 1 } : i
-      );
+  const size = selectedSize[dish.id];
+      if (!size) {
+        alert("Please select size (S / M / L)");
+        return;
       }
-      return [...prev, { ...dish, size, qty: 1, note: "" }];
-    });
+      setCart((prev) => {
+        return [
+          ...prev,
+          { ...dish, size, qty: 1, note: "" }
+        ];
+      });
   };
+
 
   const removeItem = (id, size) => {
     setCart((prev) => prev.filter((i) => !(i.id === id && i.size === size)));
@@ -109,20 +111,19 @@ export default function Menu() {
   return (
     
     
-<div className="min-h-screen bg-[#0d0d12] text-gray-200 p-3 md:p-6 flex gap-4">
-
+<div className="min-h-screen bg-[#272731]  text-gray-200  flex ">
       <SideBar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-  
   <div className="flex flex-1 gap-4">
-      <main className="flex-1 bg-[#16161d] rounded-xl p-6 relative">
-        {/* STICKY HEADER */}
-    <div className="sticky top-0 z-40 bg-[#16161d] pb-4">
+      <main className="flex-1 bg-[#272731] rounded-full p-6 relative ">
 
-        {/* TOP BAR */}
-      <div className="flex justify-between items-center">
-        <div>
-        <h1 className="text-xl font-semibold">Chef Kitchen</h1>
-        <p className="text-xs text-gray-400">
+  {/* 🔒 STICKY HEADER BLOCK */}
+    <div className="sticky top-0 z-40 bg-[#272731] pb-4">
+
+    {/* TOP BAR */}
+    <div className="flex justify-between items-center">
+      <div>
+        <h1 className="text-2xl font-semibold">Chef Kitchen</h1>
+        <p className="text-s text-gray-400">
           {today.toLocaleDateString("en-GB", {
             weekday: "long",
             day: "numeric",
@@ -130,75 +131,105 @@ export default function Menu() {
             year: "numeric",
           })}
         </p>
+      </div>
 
+      <div className="flex gap-3">
+        <div className="relative hidden sm:block">
+          <AiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 text-lg" />
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search for food,coffee,etc.."
+            className="w-full pl-12 pr-4 py-3
+                  rounded-xl
+                  bg-[#2b2f3a]
+                  text-sm text-gray-200 placeholder-gray-400
+
+                  border border-white/10
+                  focus:border-orange-400/60
+
+                  outline-none
+                  transition-all duration-200
+                "
+           />
         </div>
 
-        <div className="flex gap-3">
-          <div className="relative hidden sm:block">
-            <AiOutlineSearch className="absolute left-3 top-2.5 text-gray-400" />
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search for food..."
-              className="pl-9 pr-4 py-2 rounded-xl bg-[#1f1d29]"
-            />
-          </div>
-
-        {/* CART BUTTON */}
+        {/* CART BUTTON  */}
         <button
-          onClick={() => setShowOrderPanel(true)}
-          className="relative bg-[#1f1d29] p-3 rounded-xl hover:bg-orange-400"
-        >
-          <FiShoppingCart className="text-xl" />
-          {cart.length > 0 && (
-            <span className="absolute -top-1 -right-1 bg-orange-400 text-black text-xs w-5 h-5 rounded-full grid place-items-center">
-              {cart.length}
-            </span>
-          )}
+            onClick={() => setShowOrderPanel(prev => !prev)}
+            className="
+              relative p-3 rounded-xl bg-orange-400
+              transition-opacity duration-200
+
+              hover:opacity-80
+              active:opacity-100
+            "
+          >
+
+            <FiShoppingCart className="text-xl" />
+
+            {cart.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-black text-orange-400 text-xs w-5 h-5 rounded-full grid place-items-center">
+                {cart.length}
+              </span>
+            )}
         </button>
+      </div>
     </div>
-  </div>
 
-  {/* TABS */}
-  <div className="flex gap-6 mt-6 border-b border-gray-700 pb-2 overflow-x-auto whitespace-nowrap">
-    {["Today Special", "Our Specials", "South Indian Special"].map((t, i) => (
-      <button
-        key={i}
-        onClick={() => setActiveTab(i)}
-        className={
+   <div className="flex gap-6 mt-6  border-b border-gray-700 overflow-x-auto whitespace-nowrap">
+  {["Today Special", "Our Specials", "South Indian Special"].map((t, i) => (
+    <button
+      key={i}
+      onClick={() => setActiveTab(i)}
+      className={`relative pb-3 text-sm
+        ${
           activeTab === i
-            ? "text-orange-400 border-b-2 border-orange-400 pb-1"
-            : "text-gray-400"
+            ? `
+              text-orange-400
+              after:content-['']
+              after:absolute
+              after:left-0
+              after:bottom-0
+              after:h-[2px]
+              after:w-[40px]
+              after:bg-orange-400
+            `
+            : "text-gray-400 hover:text-gray-300"
         }
-      >
-        {t}
-      </button>
-    ))}
-  </div>
-
+      `}
+    >
+      {t}
+    </button>
+  ))}
 </div>
 
 
-      {/* CHOOSE DISHES */}
-        <div className="flex justify-between items-center mt-6">
-          <h2 className="font-semibold">Choose Dishes</h2>
-          <select
-            value={orderType}
-            onChange={(e) => setOrderType(e.target.value)}
-            className="bg-[#23232b] px-3 py-1 rounded"
-          >
-            <option>Dine In</option>
-            <option>Take away</option>
-            <option>Delivery</option>
-          </select>
-        </div>
 
+    {/* ✅ CHOOSE DISHES (NOW STICKY) */}
+    <div className="flex justify-between items-center mt-4 pt-4  pb-3">
+      <h2 className="font-semibold">Choose Dishes</h2>
+      <select
+        value={orderType}
+        onChange={(e) => setOrderType(e.target.value)}
+        className="bg-[#23232b] px-3 py-1 rounded"
+      >
+        <option>Dine In</option>
+        <option>Take away</option>
+        <option>Delivery</option>
+      </select>
+    </div>
+
+  </div>
+
+  {/* 🔽 SCROLLING CONTENT STARTS HERE */}
+  {/* dishes list, cards, etc */}
 
 
 
 
                     {/* DISH GRID */}
-                    <div className={`grid gap-10 my-20 transition-all duration-300
+                    <div className={`grid gap-10 my-20   transition-all duration-300
     grid-cols-2
     ${showOrderPanel ? "lg:grid-cols-3" : "lg:grid-cols-5"}
   `}>
@@ -277,21 +308,29 @@ export default function Menu() {
     h-[calc(100vh-3rem)]
   ">
 
+
+
     {/* HEADER */}
     <div className="mb-4">
-      <h2 className="text-sm font-semibold mb-3">Orders #34562</h2>
+          <h2 className="text-sm font-semibold mb-3">Orders #34562</h2>
+          <div className="flex gap-2">
+              {["Dine In", "Take away", "Delivery"].map((type) => (
+                <button
+                  key={type}
+                  onClick={() => setOrderType(type)}
+                  className={`px-4 py-1 rounded-md text-xs transition
+                    ${
+                      orderType === type
+                        ? "bg-orange-400 text-black"
+                        : "border border-gray-600 text-gray-300 hover:border-orange-400 hover:text-orange-400"
+                    }
+                  `}
+                >
+          {type}
+        </button>
+      ))}
+    </div>
 
-      <div className="flex gap-2">
-        <button className="px-4 py-1 rounded-md text-xs bg-orange-400 text-black">
-          Dine In
-        </button>
-        <button className="px-4 py-1 rounded-md text-xs border border-gray-600 text-gray-300">
-          Take away
-        </button>
-        <button className="px-4 py-1 rounded-md text-xs border border-gray-600 text-gray-300">
-          Delivery
-        </button>
-      </div>
 
       <div className="flex justify-between text-xs text-gray-400 mt-4">
         <span>Item</span>
@@ -301,7 +340,7 @@ export default function Menu() {
     </div>
 
     {/* ITEMS – ONLY THIS SCROLLS */}
-    <div className="flex-1 overflow-y-auto space-y-4 pr-1">
+<div className="flex-1 overflow-y-auto no-scrollbar space-y-4 pr-1">
       {cart.map((c) => (
         <div key={`${c.id}-${c.size}`} className="space-y-2">
 
@@ -350,7 +389,7 @@ export default function Menu() {
     </div>
 
     {/* FOOTER – FIXED */}
-    <div className="pt-4 border-t border-gray-700 text-sm text-gray-400">
+    <div className="pt-4 border-t sticky border-gray-700 text-sm text-gray-400">
       <div className="flex justify-between mb-2">
         <span>Discount</span>
         <span>5%</span>
@@ -362,17 +401,22 @@ export default function Menu() {
       </div>
 
       <button
-          onClick={placeOrder}
-          className="
-            w-full bg-orange-400 py-3 rounded-lg text-black font-semibold
-            transition-all duration-150
-            active:scale-95
-            active:shadow-[0_0_25px_rgba(251,146,60,0.9)]
-            shadow-[0_0_0_rgba(0,0,0,0)]
-          "
-        >
-          Order now
-      </button>
+  onClick={placeOrder}
+  className="
+    w-full bg-orange-400 py-3 rounded-lg text-black font-semibold
+    transition-all duration-200
+
+    hover:shadow-[0_0_25px_rgba(251,146,60,0.6)]
+    hover:-translate-y-[1px]
+
+    active:scale-95
+    active:shadow-[0_0_30px_rgba(251,146,60,0.9)]
+    shadow-[0_0_0_rgba(0,0,0,0)]
+  "
+>
+  Order now
+</button>
+
 
     </div>
 
@@ -433,15 +477,6 @@ export default function Menu() {
     </div>
   </div>
 )}
-
-
-
-
-
-
-
-
-
 
 
     </div>

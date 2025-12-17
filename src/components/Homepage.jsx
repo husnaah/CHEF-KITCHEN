@@ -49,7 +49,7 @@ const Homepage = () => {
         </p>
 
         {/* Button */}
-        <button onClick={() => navigate("/home")} className="bg-orange-400 hover:bg-orange-300 active:scale-95 transition text-white font-light py-3 px-20 rounded-lg shadow-md mt-6">
+        <button onClick={() => navigate("/menu")} className="bg-orange-400 hover:bg-orange-300 active:scale-95 transition text-white font-light py-3 px-20 rounded-lg shadow-md mt-6">
           Explore Menu
         </button>
       </div>
