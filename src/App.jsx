@@ -1,19 +1,20 @@
 import React from 'react'
-import Homepage from './components/homepage'
+
 import Menu from './components/Menu'
 import Demo from './components/Demo'
 import { Route, Routes } from 'react-router-dom'
+import Homepage from './components/homepage'
 
 
 const App = () => {
   return (
     <div>
-      {/* <Homepage/> */}
+      
       {/* <Menu/> */}
       {/* <Demo/> */}
 
       <Routes>
-        <Route path='/' element={<Homepage/>} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/home' element={<Menu/>} />
       </Routes>
 

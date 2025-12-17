@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 
 
-const Homepage = () => {
+const homepage = () => {
   const navigate = useNavigate();
   return (
     <div
@@ -57,4 +57,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default homepage;
