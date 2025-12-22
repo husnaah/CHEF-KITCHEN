@@ -60,7 +60,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "today",
-      availableFor: ["Dine In", "Take away"],
+      availableFor: ["Dine In", "Take away","All"],
     },
     {
       id: 2,
@@ -69,7 +69,7 @@ export default function Menu() {
       price: 25,
       bowls: 13,
       category: "today",
-      availableFor: ["Delivery", "Dine In"],
+      availableFor: ["Delivery", "Dine In","All"],
     },
     {
       id: 3,
@@ -78,7 +78,7 @@ export default function Menu() {
       price: 25,
       bowls: 17,
       category: "our",
-      availableFor: ["Dine In"],
+      availableFor: ["Dine In","All"],
     },
     {
       id: 4,
@@ -87,7 +87,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "our",
-      availableFor: ["Take away"],
+      availableFor: ["Take away","All"],
     },
     {
       id: 5,
@@ -96,7 +96,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "south",
-      availableFor: ["Dine In"],
+      availableFor: ["Dine In","All"],
     },
     {
       id: 6,
@@ -105,7 +105,7 @@ export default function Menu() {
       price: 25,
       bowls: 13,
       category: "south",
-      availableFor: ["Delivery", "Dine In"],
+      availableFor: ["Delivery", "Dine In","All"],
     },
     {
       id: 7,
@@ -114,7 +114,7 @@ export default function Menu() {
       price: 25,
       bowls: 17,
       category: "our",
-      availableFor: ["Dine In"],
+      availableFor: ["Dine In","All"],
     },
     {
       id: 8,
@@ -123,7 +123,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "today",
-      availableFor: ["Take away"],
+      availableFor: ["Take away","All"],
     },
     {
       id: 9,
@@ -132,7 +132,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "south",
-      availableFor: ["Dine In"],
+      availableFor: ["Dine In","All"],
     },
     {
       id: 10,
@@ -141,7 +141,7 @@ export default function Menu() {
       price: 25,
       bowls: 13,
       category: "our",
-      availableFor: ["Take away", "Dine In"],
+      availableFor: ["Take away", "Dine In","All"],
     },
   ];
 
@@ -239,7 +239,7 @@ export default function Menu() {
   return (
     <div
       className={`min-h-screen bg-[#272731]  text-gray-200  flex transition-all duration-300 ${
-        showOrderPanel ? "lg:mr-[420px]" : "mr-0"
+        showOrderPanel ? "lg:mr-[400px]" : "mr-0"
       }`}
     >
       <SideBar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
@@ -263,8 +263,8 @@ export default function Menu() {
                 </p>
               </div>
 
-              <div className="flex gap-3">
-                <div className="relative hidden sm:block">
+              <div className="flex gap-3 items-center">
+                <div className="relative flex-1 lg:block">
                   <AiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 text-lg" />
                   <input
                     value={search}
@@ -286,16 +286,9 @@ export default function Menu() {
 
                 {/* CART BUTTON  */}
                 <button
-                  onClick={() => {
-                    const w = window.innerWidth;
-
-                    if (w < 1024) {
-                      setShowMobileCart(true); // mobile + tablet
-                    } else {
-                      setShowOrderPanel((prev) => !prev); // desktop
-                    }
-                  }}
-                  className="
+                   onClick={() => setShowOrderPanel((prev) => !prev)}
+                    
+                  className=" hidden lg:flex
               relative p-3 rounded-xl bg-[#FE9232]
 }
               transition-opacity duration-200
@@ -356,6 +349,7 @@ export default function Menu() {
                 onChange={(e) => setOrderType(e.target.value)}
                 className="bg-[#23232b] pl-2 pr-4 py-2.5  text-gray-200 text-sm   rounded-lg border border-white/15 outline-none"
               >
+                <option>All</option>
                 <option>Dine In</option>
                 <option>Take away</option>
                 <option>Delivery</option>
@@ -398,6 +392,51 @@ export default function Menu() {
   setShowReceipt={setShowReceipt}
   receiptData={receiptData}
 />
+
+
+                    {/* 🛒 MOBILE / TABLET CART BUTTON */}
+
+              {!showMobileCart && (
+              <button
+                onClick={() => setShowMobileCart(true)}
+                className="
+                  fixed
+                  bottom-5
+                  right-5
+                  z-[120]
+
+                  flex lg:hidden
+                  items-center justify-center
+
+                  bg-[#FE9232]
+                  text-black
+
+                  w-14 h-14
+                  rounded-full
+                  shadow-xl
+
+                  hover:opacity-90
+                  active:scale-95
+                  transition
+                "
+              >
+                <FiShoppingCart className="text-xl" />
+
+                {cart.length > 0 && (
+                  <span className="
+                    absolute -top-1 -right-1
+                    bg-black text-orange-400
+                    text-xs
+                    w-5 h-5
+                    rounded-full
+                    grid place-items-center
+                  ">
+                    {cart.length}
+                  </span>
+                )}
+              </button>
+              )}
+
 
       {toast && (
         <div

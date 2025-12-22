@@ -28,11 +28,11 @@ export default function DishGrid({
         // >
 
         <div
-            className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 ${
+            className={`grid grid-cols-2  md:grid-cols-3 ${
               showOrderPanel
                 ? "lg:grid-cols-3 xl:grid-cols-4"
                 : "lg:grid-cols-4 xl:grid-cols-5"
-            } gap-4 sm:gap-4 gap-y-10 sm:gap-y-12`}
+            } gap-4 gap-y-[50px]`}
           >
 
 
@@ -41,61 +41,59 @@ export default function DishGrid({
             <div
               key={d.id}
               className="
-                relative bg-slate-950 pt-10 sm:pt-12 pb-4 rounded-2xl
+                relative bg-slate-950 pt-[30px] pb-6 rounded-2xl
                 text-center flex flex-col h-full
               "
             >
+              {/* IMAGE */}
               <img
-                  src={d.img}
-                  alt={d.name}
-                  className="
-                        w-[72px] h-[72px]          /* mobile */
-                        sm:w-[90px] sm:h-[90px]    /* sm: BIG like screenshot */
-                        md:w-[100px] md:h-[100px]  /* tablet */
-                        lg:w-[105px] lg:h-[105px]  /* desktop */
-                        rounded-full
-                        absolute
-                        -top-8 sm:-top-10
-                        left-1/2 -translate-x-1/2
-                    "
-                />
-
+                src={d.img}
+                alt={d.name}
+                className="
+                   w-[60px] h-[60px]
+                    sm:w-[80px] sm:h-[80px]
+                    md:w-[100px] md:h-[100px]
+                    lg:w-[120px] lg:h-[120px]
+                  rounded-full
+                  absolute -top-7 left-1/2 -translate-x-1/2
+                "
+              />
 
               {/* CONTENT */}
               <div className="flex-1 flex flex-col">
                 <p
                   className="
-                     text-sm sm:text-[15px] font-normal text-gray-100
-                    leading-snug mt-6 lg:px-6  sm:px-8
-                    line-clamp-2 min-h-[2.4rem]
+                    text-[16px] font-normal text-gray-100
+                    leading-[1.25rem] mt-8 px-16
+                    line-clamp-2 min-h-[2.6rem]
                   "
                 >
                   {d.name}
                 </p>
 
                 {/* PRICE */}
-                <div className="flex justify-center items-center gap-2 mt-2">
-                  <span className="text-xs text-red-500 line-through ">
+                <div className="flex justify-center items-center gap-2 my-2">
+                  <span className="text-sm text-red-500 line-through font-light">
                     {d.price} AED
                   </span>
-                  <span className="text-sm text-green-400 font-medium">
+                  <span className="text-sm text-green-400 font-light">
                     {d.price} AED
                   </span>
                 </div>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-m text-gray-500">
                   {d.bowls} Bowls available
                 </p>
 
                 {/* SIZE */}
-                <div className="flex justify-center gap-2 mt-3">
+                <div className="flex justify-center gap-2 mt-2">
                   {["S", "M", "L"].map((s) => (
                     <button
                       key={s}
                       onClick={() =>
                         setSelectedSize((p) => ({ ...p, [d.id]: s }))
                       }
-                      className={`px-2 py-0.5 text-xs rounded-md transition
+                      className={`px-2 py-0.5 text-m rounded transition
                         ${
                           selectedSize[d.id] === s
                             ? "bg-orange-400 text-black"
@@ -111,7 +109,7 @@ export default function DishGrid({
               {/* ADD BUTTON */}
               <button
                 onClick={() => addToCart(d)}
-                className={`mt-4 mx-4 text-sm py-2 rounded-lg font-semibold transition
+                className={`mt-4 mx-10 text-sm py-2 rounded-lg font-semibold transition-all
                   ${
                     isInCart(d.id)
                       ? "bg-green-500 text-black"

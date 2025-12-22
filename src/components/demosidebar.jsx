@@ -28,15 +28,15 @@ const Sidebar = () => {
       fixed bottom-0 left-0 right-0 z-50
       md:sticky md:top-0 md:h-screen md:w-20
       bg-slate-950 
-      flex flex-row md:flex-col
+       flex-row hidden lg:flex md:flex-col
       justify-around items-center
       py-2 md:py-6
     ">     
      {/* LOGO */}
-      <img src={logoo} alt="Logo" className="w-50 h-10" />
+      <img src={logoo} alt="Logo" className="w-[50px] h-[50px]" />
 
       {/* ICONS */}
-      <div className="flex flex-col gap-6 py-4">
+      <div className="flex flex-col gap-6 py-10">
         {items.map((item, i) => {
         const isActive = location.pathname === item.path;
    return(
@@ -51,14 +51,14 @@ const Sidebar = () => {
               <>
                 {/* top */}
                 <div className="absolute top-[-50%] -right-4 w-3 h-5  bg-[#272731] " />
-                <div className="absolute top-[-51%] -right-4 w-3 h-5  bg-[#171724] rounded-br-2xl" />
+                <div className="absolute top-[-51%] -right-4 w-3 h-5  bg-slate-950  rounded-br-2xl" />
 
                 {/* center */}
                 <div className="absolute -right-7 w-20 h-14 bg-[#272731]  rounded-l-xl transition-all duration-300" />
 
                 {/* bottom */}
                 <div className="absolute bottom-[-50%] -right-4 w-3 h-5 bg-[#272731] " />
-                <div className="absolute bottom-[-50%] -right-4 w-3 h-5 bg-[#171724] rounded-tr-2xl" />
+                <div className="absolute bottom-[-50%] -right-4 w-3 h-5 bg-slate-950  rounded-tr-2xl" />
               </>
             )}
 
@@ -75,7 +75,7 @@ const Sidebar = () => {
   <img
     src={item.src}
     alt={item.alt}
-    className={`w-4 h-4 transition-all duration-300
+    className={`w-5 h-5 transition-all duration-300
       ${
         isActive
           ? "brightness-0 invert" // WHITE
