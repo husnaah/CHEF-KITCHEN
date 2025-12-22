@@ -127,16 +127,20 @@ export default function OrderPanel({
             </div>
 
             <button
-              onClick={placeOrder}
-              className="
-                w-full bg-orange-400 py-3 rounded-lg
-                text-black font-semibold transition-all
-                hover:shadow-[0_0_25px_rgba(251,146,60,0.6)]
-                active:scale-95
-              "
-            >
-              Order now
-            </button>
+                onClick={placeOrder}
+                disabled={cart.length === 0}
+                className={`
+                  w-full py-3 rounded-lg font-semibold transition-all
+                  ${
+                    cart.length === 0
+                      ? "bg-gray-600 text-gray-300 cursor-not-allowed"
+                      : "bg-orange-400 text-black hover:shadow-[0_0_25px_rgba(251,146,60,0.6)] active:scale-95"
+                  }
+                `}
+              >
+                Order now
+              </button>
+
           </div>
         </aside>
       )}
@@ -208,23 +212,24 @@ export default function OrderPanel({
       </div>
 
       <button
-        onClick={() => {
-          placeOrder();
-          setShowMobileCart(false);
-        }}
-        className="
-          w-full
-          bg-orange-400
-          py-3
-          rounded-xl
-          text-black
-          font-semibold
-          active:scale-95
-          transition
-        "
-      >
-        Order now
-      </button>
+  disabled={cart.length === 0}
+  onClick={() => {
+    placeOrder();
+    setShowMobileCart(false);
+  }}
+  className={`
+    w-full py-3 rounded-xl font-semibold transition
+    ${
+      cart.length === 0
+        ? "bg-gray-600 text-gray-300 cursor-not-allowed"
+        : "bg-orange-400 text-black active:scale-95"
+    }
+  `}
+>
+  Order now
+</button>
+
+
     </div>
   </div>
 )}
