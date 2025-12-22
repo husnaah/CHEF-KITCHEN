@@ -220,10 +220,10 @@ export default function OrderPanel({
   className={`
     w-full py-3 rounded-xl font-semibold transition
     ${
-      cart.length === 0
-        ? "bg-gray-600 text-gray-300 cursor-not-allowed"
-        : "bg-orange-400 text-black active:scale-95"
-    }
+                    cart.length === 0
+                      ? "bg-gray-600 text-gray-300 cursor-not-allowed"
+                      : "bg-orange-400 text-black hover:shadow-[0_0_25px_rgba(251,146,60,0.6)] active:scale-95"
+                  }
   `}
 >
   Order now
