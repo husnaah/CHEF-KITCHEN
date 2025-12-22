@@ -12,7 +12,7 @@ import Profile from './components/Profile'
 
 const App = () => {
   return (
-    <div>
+    <div className="font-barlow">
       
       {/* <Menu/> */}
       {/* <Demo/> */}

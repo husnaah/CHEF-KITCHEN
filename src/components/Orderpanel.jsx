@@ -141,120 +141,94 @@ export default function OrderPanel({
         </aside>
       )}
 
-{/* ================= MOBILE CART ================= */}
+{/* ================= MOBILE / TABLET FULL CART ================= */}
 {showMobileCart && (
-  <div className="fixed inset-0 z-[80] bg-black/60 lg:hidden">
-    <div
-      className="
-        absolute bottom-0 left-0 right-0
-        md:top-0 md:right-0 md:left-auto
-        md:w-[380px] md:h-screen
-        bg-[#0f1117]
-        rounded-t-xl md:rounded-none
-        flex flex-col
-        max-h-[85vh]
-      "
-    >
-      {/* HEADER */}
-      <div className="flex justify-between items-center px-4 py-3 border-b border-white/10">
-        <h2 className="text-sm font-semibold">Your Order</h2>
-        <button
-          onClick={() => setShowMobileCart(false)}
-          className="text-lg text-gray-400"
-        >
-          ✕
-        </button>
-      </div>
+  <div className="fixed inset-0 z-[80] bg-[#0f1117] lg:hidden flex flex-col">
+    
+    {/* HEADER */}
+    <div className="flex items-center justify-between px-4 py-4 border-b border-white/10">
+      <h2 className="text-base font-semibold">Your Order</h2>
+      <button
+        onClick={() => setShowMobileCart(false)}
+        className="text-xl text-gray-400"
+      >
+        ✕
+      </button>
+    </div>
 
-      {/* ITEMS */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-        {cart.length === 0 ? (
-          <p className="text-center text-xs text-gray-400 mt-10">
-            Your cart is empty
-          </p>
-        ) : (
-          cart.map((c) => (
-            <div
-              key={`${c.id}-${c.size}`}
-              className="
-                bg-[#181b22]
-                rounded-lg
-                px-3 py-2
-                flex items-center gap-3
-              "
-            >
-              {/* IMAGE */}
-              <img
-                src={c.img}
-                alt=""
-                className="w-11 h-11 rounded-md object-cover"
-              />
+    {/* ITEMS (SCROLL ONLY HERE) */}
+    <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+      {cart.length === 0 ? (
+        <p className="text-center text-sm text-gray-400 mt-20">
+          Your cart is empty
+        </p>
+      ) : (
+        cart.map((c) => (
+          <div
+            key={`${c.id}-${c.size}`}
+            className="bg-[#181b22] rounded-lg px-3 py-2 flex items-center gap-3"
+          >
+            <img
+              src={c.img}
+              alt=""
+              className="w-12 h-12 rounded-md object-cover"
+            />
 
-              {/* INFO */}
-              <div className="flex-1">
-                <p className="text-xs font-medium line-clamp-1">
-                  {c.name}
-                </p>
-                <p className="text-[11px] text-gray-400">
-                  {c.size} • Qty {c.qty}
-                </p>
-              </div>
-
-              {/* PRICE */}
-              <span className="text-xs font-semibold text-orange-400">
-                {(c.qty * c.price).toFixed(2)}
-              </span>
-
-              {/* DELETE */}
-              <button
-                onClick={() => removeItem(c.id, c.size)}
-                className="
-                  ml-1
-                  text-orange-400
-                  text-sm
-                  opacity-70
-                  hover:opacity-100
-                "
-              >
-                <MdDelete />
-              </button>
+            <div className="flex-1">
+              <p className="text-sm font-medium line-clamp-1">
+                {c.name}
+              </p>
+              <p className="text-xs text-gray-400">
+                {c.size} • Qty {c.qty}
+              </p>
             </div>
-          ))
-        )}
+
+            <span className="text-sm font-semibold text-orange-400">
+              {(c.qty * c.price).toFixed(2)}
+            </span>
+
+            <button
+              onClick={() => removeItem(c.id, c.size)}
+              className="text-orange-400 text-lg"
+            >
+              <MdDelete />
+            </button>
+          </div>
+        ))
+      )}
+    </div>
+
+    {/* STICKY FOOTER */}
+    <div className="border-t border-white/10 px-4 py-4">
+      <div className="flex justify-between text-sm mb-3">
+        <span className="text-gray-400">Total</span>
+        <span className="font-semibold text-white">
+          {total.toFixed(2)} AED
+        </span>
       </div>
 
-      {/* FOOTER */}
-      <div className="px-4 py-3 border-t border-white/10">
-        <div className="flex justify-between text-xs mb-2">
-          <span className="text-gray-400">Total</span>
-          <span className="font-semibold text-white">
-            {total.toFixed(2)} AED
-          </span>
-        </div>
-
-        <button
-          onClick={() => {
-            placeOrder();
-            setShowMobileCart(false);
-          }}
-          className="
-            w-full
-            bg-orange-400
-            py-2.5
-            rounded-lg
-            text-sm
-            text-black
-            font-semibold
-            active:scale-95
-            transition
-          "
-        >
-          Order now
-        </button>
-      </div>
+      <button
+        onClick={() => {
+          placeOrder();
+          setShowMobileCart(false);
+        }}
+        className="
+          w-full
+          bg-orange-400
+          py-3
+          rounded-xl
+          text-black
+          font-semibold
+          active:scale-95
+          transition
+        "
+      >
+        Order now
+      </button>
     </div>
   </div>
 )}
+
 
     </>
   );

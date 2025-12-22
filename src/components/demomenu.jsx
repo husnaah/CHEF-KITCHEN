@@ -238,7 +238,7 @@ export default function Menu() {
 
   return (
     <div
-      className={`min-h-screen bg-[#272731]  text-gray-200  flex transition-all duration-300 ${
+      className={`min-h-screen bg-[#272731]   text-gray-200  flex transition-all duration-300 ${
         showOrderPanel ? "lg:mr-[400px]" : "mr-0"
       }`}
     >
@@ -246,7 +246,7 @@ export default function Menu() {
       <div className="flex flex-1 gap-4 overflow-hidden">
         <main className="flex-1 bg-[#272731]  px-6 pb-6 pt-0 relative h-screen overflow-y-auto no-scrollbar">
           {/* 🔒 STICKY HEADER BLOCK */}
-          <div className="sticky top-0 z-40 bg-[#272731] pb-4">
+          <div className="sticky top-0 z-40 bg-[#272731]  pb-4">
             {/* TOP BAR */}
             <div className="flex flex-col sm:flex-row sm:justify-between  sm:items-center gap-4 pt-10">
               <div>
@@ -396,7 +396,7 @@ export default function Menu() {
 
                     {/* 🛒 MOBILE / TABLET CART BUTTON */}
 
-              {!showMobileCart && (
+              {!showMobileCart && !showReceipt && (
               <button
                 onClick={() => setShowMobileCart(true)}
                 className="

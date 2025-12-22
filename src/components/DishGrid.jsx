@@ -41,7 +41,7 @@ export default function DishGrid({
             <div
               key={d.id}
               className="
-                relative bg-slate-950 pt-10 sm:pt-12 pb-4 rounded-2xl
+                relative bg-slate-950  pt-10 sm:pt-12 pb-4 rounded-2xl
                 text-center flex flex-col h-full
               "
             >
@@ -49,16 +49,18 @@ export default function DishGrid({
                   src={d.img}
                   alt={d.name}
                   className="
-                        w-[72px] h-[72px]          /* mobile */
-                        sm:w-[90px] sm:h-[90px]    /* sm: BIG like screenshot */
-                        md:w-[100px] md:h-[100px]  /* tablet */
-                        lg:w-[105px] lg:h-[105px]  /* desktop */
-                        rounded-full
-                        absolute
-                        -top-8 sm:-top-10
-                        left-1/2 -translate-x-1/2
-                    "
+                    w-[88px] h-[88px]          /* REAL phones */
+                    sm:w-[96px] sm:h-[96px]    /* sm devices */
+                    md:w-[104px] md:h-[104px]
+                    lg:w-[105px] lg:h-[105px]
+                    object-cover
+                    rounded-full
+                    absolute
+                    -top-9 sm:-top-10
+                    left-1/2 -translate-x-1/2
+                  "
                 />
+
 
 
               {/* CONTENT */}
@@ -66,7 +68,7 @@ export default function DishGrid({
                 <p
                   className="
                      text-sm sm:text-[15px] font-normal text-gray-100
-                    leading-snug mt-6 lg:px-6  sm:px-8
+                    leading-snug mt-7  px-4
                     line-clamp-2 min-h-[2.4rem]
                   "
                 >
