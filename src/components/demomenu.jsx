@@ -250,10 +250,10 @@ export default function Menu() {
             {/* TOP BAR */}
             <div className="flex flex-col sm:flex-row sm:justify-between  sm:items-center gap-4 pt-10">
               <div>
-                <h1 className="text-2xl font-semibold text-white mb-2">
+                <h1 className="text-2xl font-semibold tracking-tight text-white mb-2">
                   Chef Kitchen
                 </h1>
-                <p className="text-s text-gray-400 font-light">
+                <p className="text-sm text-gray-400 font-normal trackin-wide">
                   {today.toLocaleDateString("en-GB", {
                     weekday: "long",
                     day: "numeric",
