@@ -1,4 +1,7 @@
 
+// Pages → full screens / routes
+// components → reusable UI blocks
+
 import React from "react";
 import FruitBg from "../assets/img.svg";
 import logo from "../assets/logo.svg";

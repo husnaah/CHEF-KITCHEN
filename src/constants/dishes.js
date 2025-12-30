@@ -1,0 +1,98 @@
+// images
+import Noodles1 from "../assets/noodle1.svg";
+import Noodles2 from "../assets/noodle2.svg";
+import Noodles3 from "../assets/noodle3.svg";
+import Noodles4 from "../assets/noodle4.svg";
+
+export const dishes = [
+  {
+    id: 1,
+    name: "Healthy noodle with spinach leaf",
+    img: Noodles1,
+    price: 25,
+    bowls: 22,
+    category: "today",
+    availableFor: ["Dine In", "Take away", "All"],
+  },
+  {
+    id: 2,
+    name: "Hot spicy fried rice with omelet",
+    img: Noodles2,
+    price: 25,
+    bowls: 13,
+    category: "today",
+    availableFor: ["Delivery", "Dine In", "All"],
+  },
+  {
+    id: 3,
+    name: "Spicy instant noodle with special omelette",
+    img: Noodles3,
+    price: 25,
+    bowls: 17,
+    category: "our",
+    availableFor: ["Dine In", "All"],
+  },
+  {
+    id: 4,
+    name: "Healthy noodle with spinach leaf",
+    img: Noodles4,
+    price: 25,
+    bowls: 22,
+    category: "south",
+    availableFor: ["Take away", "All"],
+  },
+  {
+    id: 5,
+    name: "Healthy noodle with spinach leaf",
+    img: Noodles1,
+    price: 25,
+    bowls: 22,
+    category: "today",
+    availableFor: ["Dine In", "Take away", "All"],
+  },
+  {
+    id: 6,
+    name: "Hot spicy fried rice with omelet",
+    img: Noodles2,
+    price: 25,
+    bowls: 13,
+    category: "today",
+    availableFor: ["Delivery", "Dine In", "All"],
+  },
+  {
+    id: 7,
+    name: "Spicy instant noodle with special omelette",
+    img: Noodles3,
+    price: 25,
+    bowls: 17,
+    category: "our",
+    availableFor: ["Dine In", "All"],
+  },
+  {
+    id: 8,
+    name: "Healthy noodle with spinach leaf",
+    img: Noodles4,
+    price: 25,
+    bowls: 22,
+    category: "south",
+    availableFor: ["Take away", "All"],
+  },
+  {
+    id: 9,
+    name: "Healthy noodle with spinach leaf",
+    img: Noodles1,
+    price: 25,
+    bowls: 22,
+    category: "today",
+    availableFor: ["Dine In", "Take away", "All"],
+  },
+  {
+    id: 10,
+    name: "Hot spicy fried rice with omelet",
+    img: Noodles2,
+    price: 25,
+    bowls: 13,
+    category: "today",
+    availableFor: ["Delivery", "Dine In", "All"],
+  },
+];

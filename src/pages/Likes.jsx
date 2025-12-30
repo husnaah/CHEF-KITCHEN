@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from './SideBar'
+import Sidebar from '../components/SideBar'
 
-const Notifications = () => {
+const Likes = () => {
   return (
     <div className='bg-[#272731]'>
       <Sidebar/>
@@ -9,4 +9,4 @@ const Notifications = () => {
   )
 }
 
-export default Notifications
+export default Likes

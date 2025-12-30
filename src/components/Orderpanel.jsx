@@ -8,7 +8,8 @@ export default function OrderPanel({
   orderType,
   setOrderType,
   updateNote,
-  removeItem,
+  decreaseQty,
+  removeItemCompletely,
   total,
   placeOrder,
 }) {
@@ -84,9 +85,19 @@ export default function OrderPanel({
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <div className="bg-[#2d2d39] px-3 py-1 rounded-md text-sm">
-                      {c.qty}
-                    </div>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => decreaseQty(c.id, c.size)}
+                                className="w-7 h-7 rounded-md bg-[#2d2d39] text-sm"
+                              >
+                                −
+                              </button>
+
+                              <div className="bg-[#2d2d39] px-3 py-1 rounded-md text-sm">
+                                {c.qty}
+                              </div>
+                            </div>
+
                     <p className="text-sm">
                       {(c.qty * c.price).toFixed(2)}
                     </p>
@@ -103,12 +114,13 @@ export default function OrderPanel({
                     className="flex-1 bg-[#2d2d39] px-3 py-2 text-xs rounded-md outline-none"
                   />
 
-                  <button
-                    onClick={() => removeItem(c.id, c.size)}
-                    className="w-9 h-9 rounded-md border border-orange-400 text-orange-400 flex items-center justify-center"
-                  >
-                    <MdDelete />
-                  </button>
+                          <button
+                            onClick={() => removeItemCompletely(c.id, c.size)}
+                            className="w-9 h-9 rounded-md border border-orange-400 text-orange-400 flex items-center justify-center"
+                          >
+                            <MdDelete />
+                          </button>
+
                 </div>
               </div>
             ))}
@@ -182,9 +194,19 @@ export default function OrderPanel({
               <p className="text-sm font-medium line-clamp-1">
                 {c.name}
               </p>
-              <p className="text-xs text-gray-400">
-                {c.size} • Qty {c.qty}
-              </p>
+                        <div className="flex items-center gap-2 text-xs text-gray-400">
+                          <span>{c.size}</span>
+
+                          <button
+                            onClick={() => decreaseQty(c.id, c.size)}
+                            className="px-2 text-lg text-gray-400 active:scale-95"
+                          >
+                            −
+                          </button>
+
+                          <span>Qty {c.qty}</span>
+                        </div>
+
             </div>
 
             <span className="text-sm font-semibold text-orange-400">
@@ -192,11 +214,12 @@ export default function OrderPanel({
             </span>
 
             <button
-              onClick={() => removeItem(c.id, c.size)}
+              onClick={() => removeItemCompletely(c.id, c.size)}
               className="text-orange-400 text-lg"
             >
               <MdDelete />
             </button>
+
           </div>
         ))
       )}

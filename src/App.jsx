@@ -1,17 +1,17 @@
 import React from "react";
-import Menu from "./components/Menu";
+import Menu from "./pages/Menu";
 
 import { Route, Routes } from "react-router-dom";
-import Homepage from "./components/Homepage";
-import Offers from "./components/Offers";
-import Likes from "./components/Likes";
-import Notifications from "./components/Notifications";
-import Profile from "./components/Profile";
+import Homepage from "./pages/Homepage";
+import Offers from "./pages/Offers";
+import Likes from "./pages/Likes";
+import Notifications from "./pages/Notifications";
+import Profile from "./pages/Profile";
 
-// TODO :  Create new folder named "Pages and move theses page component from component folder to that page folder"
-// TODO : Use context here for statemanagement
-// TOOD : By default set selected as first variant , Currently first we need to select a variant to add the product to cart
-// TODO : There has an issue while we delete an item from cart the entire product is deleted , we need to reduce it's count if it is less than one remove that item
+// TODO : ✅ Create new folder named "Pages and move theses page component from component folder to that page folder"
+// TODO : ✅Use context here for statemanagement
+// TODO : ✅By default set selected as first variant , Currently first we need to select a variant to add the product to cart
+// TODO : ✅ There has an issue while we delete an item from cart the entire product is deleted , we need to reduce it's count if it is less than one remove that item
 
 const App = () => {
   return (

@@ -112,7 +112,7 @@ export default function DishGrid({
 
               {/* ADD BUTTON */}
               <button
-                onClick={() => addToCart(d)}
+                 onClick={() => addToCart(d, selectedSize[d.id])}
                 className={`mt-4 mx-4 text-sm py-2 rounded-lg font-semibold transition
                   ${
                     isInCart(d.id)
