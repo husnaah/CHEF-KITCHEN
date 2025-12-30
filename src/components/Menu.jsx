@@ -17,6 +17,9 @@ import OrderPanel from "./Orderpanel";
 import DishGrid from "./DishGrid";
 import ReceiptModal from "./Reciept";
 
+// TODO : Create a sperate folder under the src named "CONSTANTS" and move all the constants to that folder [eg :dishes,tabCategoryMap]
+// TODO : Split this component into smaller components and move them , To make the code more clean
+
 export default function Menu() {
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
@@ -60,7 +63,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "today",
-      availableFor: ["Dine In", "Take away","All"],
+      availableFor: ["Dine In", "Take away", "All"],
     },
     {
       id: 2,
@@ -69,7 +72,7 @@ export default function Menu() {
       price: 25,
       bowls: 13,
       category: "today",
-      availableFor: ["Delivery", "Dine In","All"],
+      availableFor: ["Delivery", "Dine In", "All"],
     },
     {
       id: 3,
@@ -78,7 +81,7 @@ export default function Menu() {
       price: 25,
       bowls: 17,
       category: "our",
-      availableFor: ["Dine In","All"],
+      availableFor: ["Dine In", "All"],
     },
     {
       id: 4,
@@ -87,7 +90,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "our",
-      availableFor: ["Take away","All"],
+      availableFor: ["Take away", "All"],
     },
     {
       id: 5,
@@ -96,7 +99,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "south",
-      availableFor: ["Dine In","All"],
+      availableFor: ["Dine In", "All"],
     },
     {
       id: 6,
@@ -105,7 +108,7 @@ export default function Menu() {
       price: 25,
       bowls: 13,
       category: "south",
-      availableFor: ["Delivery", "Dine In","All"],
+      availableFor: ["Delivery", "Dine In", "All"],
     },
     {
       id: 7,
@@ -114,7 +117,7 @@ export default function Menu() {
       price: 25,
       bowls: 17,
       category: "our",
-      availableFor: ["Dine In","All"],
+      availableFor: ["Dine In", "All"],
     },
     {
       id: 8,
@@ -123,7 +126,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "today",
-      availableFor: ["Take away","All"],
+      availableFor: ["Take away", "All"],
     },
     {
       id: 9,
@@ -132,7 +135,7 @@ export default function Menu() {
       price: 25,
       bowls: 22,
       category: "south",
-      availableFor: ["Dine In","All"],
+      availableFor: ["Dine In", "All"],
     },
     {
       id: 10,
@@ -141,7 +144,7 @@ export default function Menu() {
       price: 25,
       bowls: 13,
       category: "our",
-      availableFor: ["Take away", "Dine In","All"],
+      availableFor: ["Take away", "Dine In", "All"],
     },
   ];
 
@@ -286,8 +289,7 @@ export default function Menu() {
 
                 {/* CART BUTTON  */}
                 <button
-                   onClick={() => setShowOrderPanel((prev) => !prev)}
-                    
+                  onClick={() => setShowOrderPanel((prev) => !prev)}
                   className=" hidden lg:flex
               relative p-3 rounded-xl bg-[#FE9232]
 }
@@ -362,14 +364,14 @@ export default function Menu() {
 
           {/* DISH GRID */}
           <DishGrid
-  filteredDishes={filteredDishes}
-  showOrderPanel={showOrderPanel}
-  selectedSize={selectedSize}
-  setSelectedSize={setSelectedSize}
-  addToCart={addToCart}
-  isInCart={isInCart}
-  cart={cart}
-/>
+            filteredDishes={filteredDishes}
+            showOrderPanel={showOrderPanel}
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
+            addToCart={addToCart}
+            isInCart={isInCart}
+            cart={cart}
+          />
         </main>
       </div>
 
@@ -388,18 +390,17 @@ export default function Menu() {
 
       {/* COMPACT RECEIPT MODAL */}
       <ReceiptModal
-  showReceipt={showReceipt}
-  setShowReceipt={setShowReceipt}
-  receiptData={receiptData}
-/>
+        showReceipt={showReceipt}
+        setShowReceipt={setShowReceipt}
+        receiptData={receiptData}
+      />
 
+      {/* 🛒 MOBILE / TABLET CART BUTTON */}
 
-                    {/* 🛒 MOBILE / TABLET CART BUTTON */}
-
-              {!showMobileCart && !showReceipt && (
-              <button
-                onClick={() => setShowMobileCart(true)}
-                className="
+      {!showMobileCart && !showReceipt && (
+        <button
+          onClick={() => setShowMobileCart(true)}
+          className="
                   fixed
                   bottom-5
                   right-5
@@ -419,24 +420,25 @@ export default function Menu() {
                   active:scale-95
                   transition
                 "
-              >
-                <FiShoppingCart className="text-xl" />
+        >
+          <FiShoppingCart className="text-xl" />
 
-                {cart.length > 0 && (
-                  <span className="
+          {cart.length > 0 && (
+            <span
+              className="
                     absolute -top-1 -right-1
                     bg-black text-orange-400
                     text-xs
                     w-5 h-5
                     rounded-full
                     grid place-items-center
-                  ">
-                    {cart.length}
-                  </span>
-                )}
-              </button>
-              )}
-
+                  "
+            >
+              {cart.length}
+            </span>
+          )}
+        </button>
+      )}
 
       {toast && (
         <div
